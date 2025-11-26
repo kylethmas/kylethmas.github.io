@@ -1,54 +1,422 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Kyle E Thomas</title>
-  <link rel="icon" href="img/icon.png" type="image/icon type">
+  <title>Kyle E Thomas – Software Engineer</title>
+  <link rel="icon" href="img/icon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
-  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <!-- remember, jQuery is completely optional -->
-  <!-- <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script> -->
-  <script type='text/javascript' src='jquery.particleground.js'></script>
-  <script type='text/javascript' src='js/demo.js'></script>
 </head>
 
 <body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#" class="logo">Kyle E Thomas</a>
 
-<div id="particles">
-  <div id="intro">
-    <h1>Kyle E Thomas</h1>
-   
-    <div class="responsive">
-      <div class="gallery">
-          <a href="https://github.com/kylethmas"> <img src="img/github.png" alt="Github Logo" > </a>
-          <div class="overlay"> GitHub </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#beyond">Beyond Tech</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero" id="top">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Cloud Microservices & DevOps</p>
+          <h1>Hi, I'm Kyle.</h1>
+          <p class="hero-subtitle">
+            Software Engineer specialising in <strong>Kubernetes</strong>, <strong>microservices</strong> and
+            <strong>DevOps automation</strong>. I build scalable, observable systems and ship features with clean
+            architecture and strong engineering practices.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn primary">View featured projects</a>
+            <!-- Update this path to your actual CV PDF -->
+            <a href="Kyle-Thomas-CV.pdf" class="btn ghost" target="_blank" rel="noopener">Download CV</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="pill">Go • Java • Python • TypeScript</div>
+            <div class="pill">Kubernetes • Docker • Terraform • CI/CD</div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://github.com/kylethmas" aria-label="GitHub">
+              <img src="img/github.png" alt="GitHub logo">
+            </a>
+            <a href="https://www.linkedin.com/in/kyleedwardthomas/" aria-label="LinkedIn">
+              <img src="img/linkedin.png" alt="LinkedIn logo">
+            </a>
+            <a href="https://www.hackerrank.com/kt2548971" aria-label="HackerRank">
+              <img src="img/hrank.png" alt="HackerRank logo">
+            </a>
+            <a href="mailto:KETtech123@gmail.com" aria-label="Email">
+              <img src="img/email.png" alt="Email icon">
+            </a>
+          </div>
         </div>
-    </div>
 
-    <div class="responsive">
-      <div class="gallery">
-        <a href="https://www.linkedin.com/in/kyleedwardthomas/"><img src="img/linkedin.png" alt="Linked In logo" > </a>
-        <div class="overlay"> Linked in </div>
-      </div>
-    </div>
-    
-    <div class="responsive">
-      <div class="gallery">
-        <a href="https://www.hackerrank.com/kt2548971"> <img src="img/hrank.png" alt="HackerRank Logo" style="border-radius: 50%"> </a>
-        <div class="overlay"> Hacker Rank </div>
-      </div>
-    </div>
-    
-    <div class="responsive">
-      <div class="gallery">
-      <a href="mailto: KETtech123@gmail.com"> <img src="img/email.png" alt="Contact"> </a>
-      <div class="overlay"> Email </div>
-    </div>
-    </div>
-    
-  </div>
-</div>
+        <div class="hero-panel">
+          <div class="card terminal-card">
+            <div class="terminal-header">
+              <span class="dot red"></span>
+              <span class="dot amber"></span>
+              <span class="dot green"></span>
+              <span class="terminal-title">kyle@portfolio:~</span>
+            </div>
+            <div class="terminal-body">
+              <p><span class="prompt">$</span> kubectl get engineer kyle -o yaml</p>
+              <p><span class="prompt">➜</span> role: <span class="accent">cloud-software-engineer</span></p>
+              <p><span class="prompt">➜</span> focus: <span class="accent">microservices, devops, observability</span></p>
+              <p><span class="prompt">➜</span> current_company: <span class="accent">Hewlett Packard Enterprise</span></p>
+              <p><span class="prompt">➜</span> location: <span class="accent">Edinburgh / Bristol, UK</span></p>
+              <p><span class="prompt">➜</span> status: <span class="accent success">open-to-opportunities</span></p>
+            </div>
+          </div>
 
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">76%</div>
+              <p class="stat-label">Lower CPU usage in Kubernetes operator research</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">$100m</div>
+              <p class="stat-label">Tax benefit enabled annually by microservice work</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">500+</div>
+              <p class="stat-label">Users on incentive web app I built</p>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">1k+</div>
+              <p class="stat-label">Early-career pros reached via Exec Q&A series</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>About</h2>
+          <p>A quick snapshot of who I am and how I work.</p>
+        </div>
+
+        <div class="split">
+          <div>
+            <p>
+              I’m an MSci Software Engineering student at the University of Glasgow (1st Class expected), and a
+              Cloud Software Engineer at Hewlett Packard Enterprise.
+              My work spans <strong>Go microservices</strong>, <strong>Java/Spring Boot</strong>,
+              <strong>React</strong>, and <strong>DevOps tooling</strong> on Kubernetes. :contentReference[oaicite:1]{index=1}
+            </p>
+            <p>
+              I enjoy turning vague requirements into production-ready systems with clear APIs,
+              observability baked in from day one, and a strong focus on developer experience.
+            </p>
+          </div>
+          <div>
+            <ul class="about-list">
+              <li><strong>Master’s project:</strong> Signal-based container monitoring on Kubernetes to
+                accelerate failure detection and reduce overhead.</li>
+              <li><strong>Leadership:</strong> Exec Q&A series creator, public speaking competition winner,
+                mentor and workshop lead for early-career engineers.</li>
+              <li><strong>Data & AI:</strong> Data Lab Academy, hackathons, Python-based ML and analytics
+                projects.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Experience</h2>
+          <p>Recent roles where I’ve built and shipped real systems.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-content">
+              <h3>Cloud Software Engineer – Hewlett Packard Enterprise</h3>
+              <p class="meta">Jul 2023 – Present · Bristol</p>
+              <p>
+                Built a production microservice in <strong>Go</strong> with <strong>Clean Architecture</strong>,
+                exposing REST and gRPC APIs and deployed on <strong>Kubernetes</strong>.
+                Requirements covered performance, supply-chain security, auditability and export-license compliance,
+                enabling tax benefits worth ~$100m annually. :contentReference[oaicite:2]{index=2}
+              </p>
+              <ul class="bullet-list">
+                <li>Designed and implemented a software distribution service consumed by other microservices and clients.</li>
+                <li>Led development of a React + Firebase incentive web app used by 500+ channel partners.</li>
+                <li>Created and hosted a global Executive Q&A series for 1,000+ early-career professionals.</li>
+                <li>Delivered web development workshops and received awards for leadership and impact.</li>
+              </ul>
+              <div class="tag-row">
+                <span class="tag">Go</span><span class="tag">Kubernetes</span><span class="tag">gRPC</span>
+                <span class="tag">React</span><span class="tag">Firebase</span><span class="tag">DevOps</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-content">
+              <h3>Data Scientist Intern – The Data Lab</h3>
+              <p class="meta">Jun 2019 · Edinburgh</p>
+              <p>
+                Used Python (NumPy, Pandas, Jupyter) to solve machine learning and data visualisation problems,
+                earning recognition for proactive client-facing contributions. :contentReference[oaicite:3]{index=3}
+              </p>
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+                <span class="tag">ML</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-content">
+              <h3>CEOx1Day Finalist – Odgers Berndtson</h3>
+              <p class="meta">Mar 2024 – Jul 2024 · London</p>
+              <p>
+                Selected as a finalist to shadow a top CEO, gaining insight into strategic decision-making,
+                leadership and organisational dynamics. :contentReference[oaicite:4]{index=4}
+              </p>
+              <div class="tag-row">
+                <span class="tag">Leadership</span><span class="tag">Strategy</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section alt" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Featured Projects</h2>
+          <p>A mix of academic, hackathon and real-world projects.</p>
+        </div>
+
+        <div class="grid projects-grid">
+          <article class="card project-card">
+            <h3>Signal-based Container Monitoring</h3>
+            <p class="meta">MSci Project · Kubernetes Operator</p>
+            <p>
+              Built a signal-based monitoring approach that consolidates supervision into a single operator,
+              reducing failure-detection latency and compute overhead in containerised microservices. Achieved up to
+              <strong>76% lower CPU usage</strong> and <strong>46% reduced memory footprint</strong> at scale. :contentReference[oaicite:5]{index=5}
+            </p>
+            <ul class="pill-list">
+              <li>Kubernetes</li><li>Go</li><li>Operators</li><li>Monitoring</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <h3>Extreme Startup DevOps Platform</h3>
+            <p class="meta">Java 17 · Spring Boot · CI/CD</p>
+            <p>
+              Implemented a microservice handling real-time quiz interactions with a multi-module architecture and
+              embedded Tomcat. Deployed via GitLab CI/CD, with environment-specific configs, zero-downtime updates,
+              and Spring Actuator for health and metrics. :contentReference[oaicite:6]{index=6}
+            </p>
+            <ul class="pill-list">
+              <li>Java 17</li><li>Spring Boot</li><li>GitLab CI</li><li>Linux automation</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <h3>Investment Trading Bot</h3>
+            <p class="meta">Python · ML & Backtesting</p>
+            <p>
+              Built a trading bot using Yahoo Finance data, Bollinger Bands, RSI, momentum, mean reversion and linear
+              regression. Included a backtesting module to evaluate strategies against historical data. :contentReference[oaicite:7]{index=7}
+            </p>
+            <ul class="pill-list">
+              <li>Python</li><li>Pandas</li><li>Scikit-learn</li><li>Matplotlib</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <h3>CENSIS Activity Monitor</h3>
+            <p class="meta">C++ Firmware · Python ML</p>
+            <p>
+              Developed a noise-processing system for independent living facilities, combining C++ firmware with
+              Python-based ML and Agile delivery practices (sprints, customer meetings, retrospectives). :contentReference[oaicite:8]{index=8}
+            </p>
+            <ul class="pill-list">
+              <li>C++</li><li>Python</li><li>Embedded</li><li>Agile</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Technical Skills</h2>
+          <p>What I’m comfortable using day-to-day.</p>
+        </div>
+
+        <div class="skills-layout">
+          <div class="card skills-card">
+            <h3>Languages & Frameworks</h3>
+            <div class="chip-grid">
+              <span class="chip">Java</span>
+              <span class="chip">Go</span>
+              <span class="chip">Python</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">Spring</span>
+              <span class="chip">React</span>
+              <span class="chip">SQL</span>
+            </div>
+          </div>
+
+          <div class="card skills-card">
+            <h3>Cloud & DevOps</h3>
+            <div class="chip-grid">
+              <span class="chip">Kubernetes</span>
+              <span class="chip">Docker</span>
+              <span class="chip">Terraform</span>
+              <span class="chip">CI/CD</span>
+              <span class="chip">AWS</span>
+              <span class="chip">Firebase</span>
+              <span class="chip">Linux</span>
+            </div>
+          </div>
+
+          <div class="card skills-card">
+            <h3>Observability & Analytics</h3>
+            <div class="chip-grid">
+              <span class="chip">Grafana</span>
+              <span class="chip">Prometheus</span>
+              <span class="chip">Humio</span>
+              <span class="chip">Google Analytics</span>
+              <span class="chip">SEO</span>
+            </div>
+          </div>
+
+          <div class="card skills-card">
+            <h3>Ways of Working</h3>
+            <div class="chip-grid">
+              <span class="chip">Clean Architecture</span>
+              <span class="chip">Agile / Scrum</span>
+              <span class="chip">Mentoring</span>
+              <span class="chip">Workshops</span>
+              <span class="chip">Public speaking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEYOND TECH -->
+    <section class="section alt" id="beyond">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Beyond Tech</h2>
+          <p>What keeps me curious, competitive and balanced.</p>
+        </div>
+
+        <div class="split">
+          <div>
+            <p>
+              Outside of engineering, I’m a multiple Scottish Cycling Champion and former Olympic Development
+              Academy apprentice. I’ve captained university cycling teams and raised over £8,000 for charity through
+              a sponsored skydive. :contentReference[oaicite:9]{index=9}
+            </p>
+          </div>
+          <div>
+            <ul class="about-list">
+              <li>Competitive cycling & running (BUCS, marathons)</li>
+              <li>Community & charity initiatives</li>
+              <li>Early-career mentorship and peer development</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Contact</h2>
+          <p>Interested in working together or just want to chat?</p>
+        </div>
+
+        <div class="contact-panel">
+          <p>
+            The best way to reach me is by email or LinkedIn. I’m always happy to talk about cloud infrastructure,
+            DevOps, or interesting technical challenges.
+          </p>
+          <div class="contact-actions">
+            <a href="mailto:KETtech123@gmail.com" class="btn primary">Email me</a>
+            <a href="https://www.linkedin.com/in/kyleedwardthomas/" class="btn ghost" target="_blank" rel="noopener">
+              Connect on LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Kyle E Thomas · Built with HTML, CSS & a bit of JS</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      navToggle.classList.toggle('open');
+    });
+
+    // Close nav on link click (mobile)
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        navToggle.classList.remove('open');
+      });
+    });
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

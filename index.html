@@ -55,8 +55,7 @@
 
           <div class="hero-actions">
             <a href="#projects" class="btn primary">View featured projects</a>
-            <!-- Update this path to your actual CV PDF -->
-            <a href="Kyle-Thomas-CV.pdf" class="btn ghost" target="_blank" rel="noopener">Download CV</a>
+            <button type="button" class="btn ghost" id="cv-builder-trigger">Create tailored CV</button>
           </div>
 
           <div class="hero-meta">
@@ -478,7 +477,246 @@
     </div>
   </footer>
 
+  <div class="modal-overlay" id="cv-modal" aria-hidden="true" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cv-modal-title">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">CV workflow</p>
+          <h3 id="cv-modal-title">Generate a tailored CV</h3>
+          <p class="text-muted">Share the role and responsibilities and I’ll assemble a CV with matching keywords and the most relevant experience.</p>
+        </div>
+        <button type="button" class="icon-button" id="cv-modal-close" aria-label="Close CV builder">×</button>
+      </div>
+
+      <form class="cv-form" id="cv-builder-form">
+        <label class="form-field">
+          <span class="form-label">Target role title</span>
+          <input type="text" name="role" placeholder="e.g. AI Technical Analyst" required />
+        </label>
+
+        <label class="form-field">
+          <span class="form-label">Job description or responsibilities</span>
+          <textarea name="details" rows="4" placeholder="Paste the key requirements, team focus, and priority skills." required></textarea>
+          <span class="helper-text">Tip: include keywords like cloud, Kubernetes, AI governance, or metrics to guide the tailoring.</span>
+        </label>
+
+        <div class="form-actions">
+          <button type="button" class="btn ghost" id="cv-modal-cancel">Cancel</button>
+          <button type="submit" class="btn primary">Generate & download CV</button>
+        </div>
+
+        <p class="status" id="cv-builder-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
   <script>
+    const cvProfile =
+      'AI Technical Analyst and Software Engineer who builds AI automations, cloud-native services, and governance-first pipelines with measurable impact.';
+
+    const coreSkills = [
+      'AI agents and workflow automation with observability and control gates',
+      'Kubernetes microservices (Go/Java), REST & gRPC APIs, Terraform, Docker',
+      'Cloud governance, risk alignment, and audit-ready delivery practices',
+      'Cost optimisation, performance tuning, and impact measurement',
+      'Stakeholder collaboration, clear documentation, and workshop facilitation'
+    ];
+
+    const cvExperiences = [
+      {
+        role: 'AI Technical Analyst — BlackRock',
+        period: '2023 — Present',
+        focus: 'AI automation, governance, risk, and cloud delivery',
+        keywords: ['ai', 'automation', 'governance', 'control', 'cloud', 'workflow', 'risk', 'observability'],
+        highlights: [
+          'Designed AI agents that automated BAU workflows and reduced manual handling time by ~7% with approval gates and audit trails.',
+          'Embedded governance controls, monitoring, and dashboards so AI usage remains explainable, measurable, and compliant.',
+          'Partnered with stakeholders to prioritise reliable AI use cases and deliver repeatable playbooks.'
+        ]
+      },
+      {
+        role: 'Software Engineering Intern — Hewlett Packard Enterprise',
+        period: '2022',
+        focus: 'Cloud microservices, Go, and full-stack delivery',
+        keywords: ['go', 'kubernetes', 'microservice', 'grpc', 'rest', 'cloud', 'react', 'firebase', 'cost'],
+        highlights: [
+          'Built a Go microservice with Clean Architecture, REST and gRPC interfaces, and Kubernetes deployment focused on cost efficiency.',
+          'Delivered a React + Firebase incentive web app for 500+ partners and automated reporting for executive programmes.',
+          'Tuned performance and resource usage, achieving CPU and memory savings through signal-based supervision.'
+        ]
+      },
+      {
+        role: 'MSci Software Engineering — University of Glasgow',
+        period: '2018 — 2023',
+        focus: 'Applied research and systems engineering',
+        keywords: ['kubernetes', 'monitoring', 'research', 'engineering', 'observability'],
+        highlights: [
+          'Researched a signal-based Kubernetes monitoring operator that consolidated supervision and cut compute overheads by up to 76% CPU.',
+          'Delivered team projects with clear APIs, testing strategies, and documentation.',
+          'Graduated with First Class honours after completing an industry-focused Masters project.'
+        ]
+      }
+    ];
+
+    const educationEntries = [
+      'MSci Software Engineering (First Class), University of Glasgow',
+      'AI, cloud engineering, distributed systems, and applied ML coursework'
+    ];
+
+    const stopWords = new Set([
+      'with', 'that', 'this', 'have', 'from', 'your', 'will', 'into', 'about', 'their', 'they', 'them', 'theyre', 'across', 'also',
+      'such', 'including', 'while', 'where', 'what', 'when', 'were', 'youre', 'need', 'needs', 'role', 'team', 'work', 'working'
+    ]);
+
+    function extractKeywords(text) {
+      const counts = {};
+      text
+        .toLowerCase()
+        .split(/[^a-z0-9+]+/)
+        .filter(word => word && word.length > 3 && !stopWords.has(word))
+        .forEach(word => {
+          counts[word] = (counts[word] || 0) + 1;
+        });
+
+      return Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 12)
+        .map(([word]) => word);
+    }
+
+    function selectExperiences(jobDetails) {
+      const normalized = jobDetails.toLowerCase();
+      const scored = cvExperiences
+        .map(experience => ({
+          ...experience,
+          score: experience.keywords.reduce((acc, keyword) => acc + (normalized.includes(keyword) ? 1 : 0), 0)
+        }))
+        .sort((a, b) => b.score - a.score);
+
+      const relevant = scored.filter(entry => entry.score > 0);
+      return (relevant.length ? relevant : scored).slice(0, 3);
+    }
+
+    function buildCvText(jobTitle, jobDetails) {
+      const keywords = extractKeywords(jobDetails);
+      const experiences = selectExperiences(jobDetails);
+      const focusLine = keywords.length
+        ? `Focus keywords: ${keywords.slice(0, 8).join(', ')}`
+        : 'Focus keywords: provided by the role description.';
+
+      const lines = [
+        `Kyle E Thomas — Tailored CV for ${jobTitle}`,
+        'AI Technical Analyst & Software Engineer',
+        '',
+        'Profile',
+        `• Tailored for ${jobTitle}: applying AI automation, governance-first delivery, and cloud-native engineering to your priorities.`,
+        `• ${cvProfile}`,
+        `• ${focusLine}`,
+        '',
+        'Key Skills'
+      ];
+
+      coreSkills.forEach(skill => lines.push(`• ${skill}`));
+
+      lines.push('', 'Relevant Experience');
+      experiences.forEach(experience => {
+        lines.push(`${experience.role} (${experience.period})`);
+        lines.push(`Focus: ${experience.focus}`);
+        experience.highlights.forEach(point => lines.push(`• ${point}`));
+        lines.push('');
+      });
+
+      lines.push('Education');
+      educationEntries.forEach(entry => lines.push(`• ${entry}`));
+
+      lines.push('', 'Tailoring reference', jobDetails.trim());
+
+      return lines.join('\n');
+    }
+
+    function updateStatus(text, tone = 'info') {
+      const status = document.getElementById('cv-builder-status');
+      if (!status) return;
+      status.textContent = text;
+      status.className = `status ${tone}`;
+    }
+
+    function downloadCv(jobTitle, content) {
+      const slug = jobTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'tailored-cv';
+      const fileName = `Kyle-Thomas-${slug}.txt`;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function openCvModal() {
+      const modal = document.getElementById('cv-modal');
+      if (!modal) return;
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      updateStatus('');
+      const form = document.getElementById('cv-builder-form');
+      form?.reset();
+      const roleInput = form?.querySelector('input[name="role"]');
+      roleInput?.focus();
+    }
+
+    function closeCvModal() {
+      const modal = document.getElementById('cv-modal');
+      if (!modal) return;
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+    }
+
+    function registerCvBuilder() {
+      const modal = document.getElementById('cv-modal');
+      const trigger = document.getElementById('cv-builder-trigger');
+      const closeButton = document.getElementById('cv-modal-close');
+      const cancelButton = document.getElementById('cv-modal-cancel');
+      const form = document.getElementById('cv-builder-form');
+
+      if (!modal || !trigger || !form) return;
+
+      trigger.addEventListener('click', openCvModal);
+      closeButton?.addEventListener('click', closeCvModal);
+      cancelButton?.addEventListener('click', closeCvModal);
+      modal.addEventListener('click', event => {
+        if (event.target === modal) {
+          closeCvModal();
+        }
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !modal.hidden) {
+          closeCvModal();
+        }
+      });
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const jobTitle = (formData.get('role') || '').toString().trim();
+        const jobDetails = (formData.get('details') || '').toString().trim();
+
+        if (!jobTitle || !jobDetails) {
+          updateStatus('Please add the role title and a short description so I can tailor the CV.', 'error');
+          return;
+        }
+
+        const tailoredCv = buildCvText(jobTitle, jobDetails);
+        downloadCv(jobTitle, tailoredCv);
+        updateStatus('Tailored CV downloaded. You can tweak the requirements and regenerate as needed.', 'success');
+      });
+    }
+
+    registerCvBuilder();
+
     const knowledgeBase = [
       {
         id: 'ai-work',
@@ -575,40 +813,56 @@
       }
     }
 
-    document.querySelector('.chat-input').addEventListener('submit', event => {
-      event.preventDefault();
-      const input = event.target.question;
-      const value = input.value.trim();
-      if (!value) return;
-      handleQuestion(value);
-      input.value = '';
-    });
+    function registerChat() {
+      const chatForm = document.querySelector('.chat-input');
+      if (!chatForm) return;
 
-    document.querySelectorAll('.prompt-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const prompt = chip.getAttribute('data-prompt');
-        handleQuestion(prompt);
+      chatForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const input = event.target.question;
+        const value = input.value.trim();
+        if (!value) return;
+        handleQuestion(value);
+        input.value = '';
       });
-    });
 
-    // Mobile nav toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.nav');
-    navToggle.addEventListener('click', () => {
-      nav.classList.toggle('open');
-      navToggle.classList.toggle('open');
-    });
-
-    // Close nav on link click (mobile)
-    document.querySelectorAll('.nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        navToggle.classList.remove('open');
+      document.querySelectorAll('.prompt-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const prompt = chip.getAttribute('data-prompt');
+          handleQuestion(prompt);
+        });
       });
-    });
+    }
 
-    // Current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+    function registerNavigation() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.nav');
+
+      if (!navToggle || !nav) return;
+
+      navToggle.addEventListener('click', () => {
+        nav.classList.toggle('open');
+        navToggle.classList.toggle('open');
+      });
+
+      document.querySelectorAll('.nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('open');
+          navToggle.classList.remove('open');
+        });
+      });
+    }
+
+    function setFooterYear() {
+      const yearEl = document.getElementById('year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    }
+
+    registerChat();
+    registerNavigation();
+    setFooterYear();
   </script>
 </body>
 </html>

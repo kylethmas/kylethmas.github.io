@@ -30,6 +30,7 @@
           <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#ai">AI</a></li>
           <li><a href="#beyond">Beyond Tech</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -42,12 +43,13 @@
     <section class="hero" id="top">
       <div class="container hero-inner">
         <div class="hero-text">
-          <p class="eyebrow">Cloud Microservices & DevOps</p>
+          <p class="eyebrow">Cloud Microservices, DevOps & Applied AI</p>
           <h1>Hi, I'm Kyle.</h1>
           <p class="hero-subtitle">
-            Software Engineer specialising in <strong>Kubernetes</strong>, <strong>microservices</strong> and
-            <strong>DevOps automation</strong>. I build scalable, observable systems and ship features with clean
-            architecture and strong engineering practices.
+            Software Engineer specialising in <strong>Kubernetes</strong>, <strong>microservices</strong>,
+            <strong>DevOps automation</strong> and <strong>data-driven AI solutions</strong>. I build scalable,
+            observable systems and ship features with clean architecture, strong engineering practices, and
+            practical AI enhancements that deliver measurable impact.
           </p>
 
           <div class="hero-actions">
@@ -111,6 +113,66 @@
             <div class="stat-card">
               <div class="stat-number">1k+</div>
               <p class="stat-label">Early-career pros reached via Exec Q&A series</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI SECTION -->
+    <section class="section alt" id="ai">
+      <div class="container">
+        <div class="section-heading">
+          <h2>AI-first Portfolio</h2>
+          <p>Ask the chatbot about my CV or explore how I’m applying AI alongside cloud engineering.</p>
+        </div>
+
+        <div class="ai-grid">
+          <div class="card ai-card">
+            <div class="ai-card-header">
+              <div>
+                <p class="eyebrow">New</p>
+                <h3>CV Copilot</h3>
+                <p class="text-muted">Interactive chatbot grounded in my CV, skills, and recent AI work.</p>
+              </div>
+              <div class="pill">Local knowledge base</div>
+            </div>
+
+            <div class="chat-window" aria-live="polite">
+              <div class="chat-message bot">
+                <div class="chat-meta">AI Copilot</div>
+                <p>Ask me about my experience, projects, or how I use AI. I’ll reply using highlights from my CV.</p>
+              </div>
+            </div>
+
+            <form class="chat-input" aria-label="Ask the CV Copilot a question">
+              <input type="text" name="question" placeholder="e.g. How have you used machine learning?" autocomplete="off" required />
+              <button type="submit" class="btn primary">Ask</button>
+            </form>
+
+            <div class="prompt-row" aria-label="Suggested prompts">
+              <button type="button" class="prompt-chip" data-prompt="How are you applying AI in your work?">AI in my work</button>
+              <button type="button" class="prompt-chip" data-prompt="What projects show your machine learning experience?">ML projects</button>
+              <button type="button" class="prompt-chip" data-prompt="Tell me about your Kubernetes operator research">Kubernetes research</button>
+              <button type="button" class="prompt-chip" data-prompt="Summarise your cloud and DevOps skills">Cloud & DevOps</button>
+            </div>
+          </div>
+
+          <div class="card ai-card ai-highlights">
+            <h3>How I use AI today</h3>
+            <ul class="bullet-list">
+              <li>Integrating Python-based ML workflows into data analytics and monitoring pipelines.</li>
+              <li>Applying statistical signal analysis to improve Kubernetes failure detection and cost efficiency.</li>
+              <li>Building lightweight, privacy-friendly chat experiences using structured CV knowledge.</li>
+              <li>Participating in Data Lab Academy and AI hackathons to prototype production-ready ideas.</li>
+            </ul>
+
+            <div class="ai-pill-grid">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">ML Ops mindset</span>
+              <span class="tag">Experiment design</span>
             </div>
           </div>
         </div>
@@ -399,6 +461,112 @@
   </footer>
 
   <script>
+    const knowledgeBase = [
+      {
+        id: 'ai-work',
+        keywords: ['ai', 'machine learning', 'ml', 'data lab', 'analytics', 'signal'],
+        answer:
+          'I pair cloud engineering with applied AI: Python-based ML and analytics, signal analysis for faster Kubernetes failure detection, and Data Lab Academy experience and hackathons that focus on production-ready AI experiments.'
+      },
+      {
+        id: 'projects-ml',
+        keywords: ['project', 'machine learning', 'trading bot', 'monitoring', 'python'],
+        answer:
+          'Recent ML projects include a Python trading bot using Bollinger Bands, RSI and regression with a backtesting module, plus a signal-based Kubernetes operator that cut CPU by up to 76% and memory by 46% in monitoring workloads.'
+      },
+      {
+        id: 'cloud-devops',
+        keywords: ['cloud', 'devops', 'kubernetes', 'terraform', 'cicd', 'observability'],
+        answer:
+          'I build Kubernetes microservices in Go and Java with REST/gRPC APIs, supply-chain security and observability. I work with Terraform, CI/CD pipelines, Docker, and production readiness practices like Clean Architecture and metrics/health endpoints.'
+      },
+      {
+        id: 'experience-hpe',
+        keywords: ['hpe', 'hewlett', 'production', 'microservice', 'go', 'react', 'firebase'],
+        answer:
+          'At HPE I delivered a Go microservice with Clean Architecture, REST and gRPC on Kubernetes to enable ~$100m annual tax benefits, plus a React + Firebase incentive web app used by 500+ partners and global Exec Q&A programming for 1k+ attendees.'
+      },
+      {
+        id: 'data-science',
+        keywords: ['data', 'python', 'pandas', 'numpy', 'intern', 'visualisation'],
+        answer:
+          'In my Data Lab internship I used Python, NumPy and Pandas for ML and visualisation challenges, earning recognition for proactive, client-facing contributions.'
+      },
+      {
+        id: 'ai-ethos',
+        keywords: ['approach', 'ai mindset', 'mlops', 'responsible'],
+        answer:
+          'My AI approach is pragmatic: start with measurable goals, validate with data, and integrate with strong engineering practices—versioned experiments, observability, privacy-friendly design, and fast feedback loops.'
+      },
+      {
+        id: 'beyond-tech',
+        keywords: ['cycling', 'sport', 'beyond'],
+        answer:
+          'Outside tech I’m a Scottish Cycling champion, former Olympic Development Academy apprentice, and active in community initiatives including charity fundraising and mentoring early-career engineers.'
+      }
+    ];
+
+    function scoreAnswer(question) {
+      const query = question.toLowerCase();
+      let best = { entry: null, score: 0 };
+
+      knowledgeBase.forEach(entry => {
+        const score = entry.keywords.reduce((acc, keyword) => acc + (query.includes(keyword) ? 1 : 0), 0);
+        if (score > best.score) {
+          best = { entry, score };
+        }
+      });
+
+      return best.entry;
+    }
+
+    function appendMessage(role, text) {
+      const chatWindow = document.querySelector('.chat-window');
+      const message = document.createElement('div');
+      message.className = `chat-message ${role === 'bot' ? 'bot' : ''}`;
+
+      const meta = document.createElement('div');
+      meta.className = 'chat-meta';
+      meta.textContent = role === 'bot' ? 'AI Copilot' : 'You';
+      const body = document.createElement('p');
+      body.textContent = text;
+
+      message.appendChild(meta);
+      message.appendChild(body);
+      chatWindow.appendChild(message);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function handleQuestion(question) {
+      appendMessage('user', question);
+      const answer = scoreAnswer(question);
+
+      if (answer) {
+        appendMessage('bot', answer.answer);
+      } else {
+        appendMessage(
+          'bot',
+          "Here's a quick summary: I engineer Kubernetes microservices with Go/Java, DevOps automation, and applied AI/ML projects. Ask about a project, company, or skill and I'll share more."
+        );
+      }
+    }
+
+    document.querySelector('.chat-input').addEventListener('submit', event => {
+      event.preventDefault();
+      const input = event.target.question;
+      const value = input.value.trim();
+      if (!value) return;
+      handleQuestion(value);
+      input.value = '';
+    });
+
+    document.querySelectorAll('.prompt-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const prompt = chip.getAttribute('data-prompt');
+        handleQuestion(prompt);
+      });
+    });
+
     // Mobile nav toggle
     const navToggle = document.querySelector('.nav-toggle');
     const nav = document.querySelector('.nav');

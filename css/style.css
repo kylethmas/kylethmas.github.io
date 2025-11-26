@@ -469,6 +469,117 @@ body {
   gap: 1.3rem;
 }
 
+.ai-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 1.3rem;
+}
+
+.ai-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ai-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.ai-card h3 {
+  margin: 0.1rem 0 0.35rem;
+}
+
+.text-muted {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.chat-window {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: rgba(15, 23, 42, 0.8);
+  min-height: 220px;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.chat-message {
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-lg);
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  margin: 0;
+}
+
+.chat-message.bot {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.chat-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.1rem;
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.chat-input input:focus {
+  outline: 2px solid var(--accent);
+  border-color: var(--accent);
+}
+
+.prompt-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.prompt-chip {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.12s ease;
+}
+
+.prompt-chip:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.ai-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+}
+
+.ai-highlights .bullet-list li {
+  margin-bottom: 0.5rem;
+}
+
 .project-card h3 {
   margin-top: 0;
   margin-bottom: 0.25rem;
@@ -568,6 +679,10 @@ body {
   }
 
   .skills-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ai-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
